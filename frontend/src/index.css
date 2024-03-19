@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+/* 
+@layer base ;
+
+@layer components{
+    .bg-blend-overlay{
+        @apply md:hidden fixed invisible opacity-0 inset-0 w-full h-full bg-black/40 z-10 transition-all;
+    }
+    .overlay--visible{
+        @apply visible opacity-100;
+    }
+} */
