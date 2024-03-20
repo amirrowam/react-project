@@ -1,23 +1,36 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import 'tailwindcss/tailwind.css'
 import 'boxicons'
 import { useSelector, useDispatch } from 'react-redux'
 import { logout } from '../../Store/Slices/Auth'
 export default function Navbar() {
-  const Navbar = () => {
-    const [navOpen, setNavOpen] = useState(false);
-
-    const handleNavOpen = () => {
-      setNavOpen(true);
-    }
-
-    const handleNavClose = () => {
-      setNavOpen(false);
-    }
-  }
+  const [navOpen, setNavOpen] = useState(false)
   const disPatch = useDispatch()
   const { token } = useSelector(state => state.auth)
+
+  useEffect(() => {
+    const navOpenBtn = document.querySelector('.nav-icon-open')
+    const navCLoseBtn = document.querySelector('.nav-icon-close')
+    const nav = document.querySelector('.nav')
+    const overLay = document.querySelector('.bg-blend-overlay')
+
+    navOpenBtn.addEventListener('click', () => {
+      nav.classList.remove('-left-64')
+      nav.classList.add('left-0')
+      overLay.classList.add('overlay--visible')
+    })
+    navCLoseBtn.addEventListener('click', () => {
+      nav.classList.add('-left-64')
+      nav.classList.remove('left-0')
+      overLay.classList.remove('overlay--visible')
+    })
+    overLay.addEventListener('click', () => {
+      nav.classList.add('-left-64')
+      nav.classList.remove('left-0')
+      overLay.classList.remove('overlay--visible')
+    })
+  })
   return (
     <>
       <header
@@ -55,36 +68,36 @@ export default function Navbar() {
       </header>
       <div className="bg-white px-4 h-16 items-center justify-between md:hidden flex">
         {/* <i className="bx bx-menu text-2xl text-zinc-700 nav-icon-open"></i> */}
-        <box-icon name='menu' color='#3f3f46' onClick={Navbar.handleNavOpen} ></box-icon>
+        <Link onClick={() => setNavOpen(!navOpen)} className='nav-icon-open'><box-icon name='menu' color='#3f3f46'></box-icon></Link>
         <h2>LOGO</h2>
         {/* <i className="bx bx-shopping-bag text-2xl text-zinc-700"></i> */}
         <box-icon name='shopping-bag' color='#3f3f46' ></box-icon>
         <div className="nav fixed top-0 bottom-0 -left-64 w-64 min-h-screen bg-white z-20 md:hidden px-4 transition-all">
           <div className="border-b-2 border-b-gray-100 flex pt-3 pb-4 mb-6">
             {/* <i className="bx bx-x text-2xl text-zinc-700 nav-icon-close"></i> */}
-            <box-icon name='x' color='#3f3f46' onClick={Navbar.handleNavClose}></box-icon>
+            <Link onClick={() => setNavOpen(false)} className='nav-icon-close'><box-icon name='x' color='#3f3f46' ></box-icon></Link>
             <h2>LOGO</h2>
           </div>
 
           <div className="space-y-3">
-            <Link to={''} className="block text-zinc-700"><i className="bx bx-home"></i> Home</Link>
-            <Link to={''} className="block text-zinc-700"><i className="bx bx-box"></i> Products</Link>
-            <Link to={''} className="block text-zinc-700"><i className="bx bx-user"></i> About Us</Link>
+            <Link to={'/'} className="block text-zinc-700"><Box-icon name='home'></Box-icon> Home</Link>
+            <Link to={'/products/all-categories'} className="block text-zinc-700"><Box-icon name='box'></Box-icon> Products</Link>
+            <Link to={'/categories'} className="block text-zinc-700"><Box-icon name='user'></Box-icon> Categories</Link>
           </div>
 
           <div className="border-t-2 border-t-gray-100 pt-3 pb-4 mt-6 text-base space-y-3">
-            <Link to={''} className="text-orange-300 block">
+            {token ? <span onClick={() => disPatch(logout())}>logout</span> : <><Link to={'/login-register'} className="items-center">
               <box-icon name='log-in' flip='vertical' color='#fed7aa'></box-icon>
-              <span>Login | Register</span>
-            </Link>
+              <span className="text-orange-300">Login | Register</span>
+            </Link></>}
             <Link to={''} className="text-orange-300 block">
-              <box-icon name='shopping-bag'></box-icon>
+              <box-icon name='shopping-bag' color='#fed7aa'></box-icon>
               <span>Cart</span>
             </Link>
           </div>
         </div>
       </div>
-      <div className={`bg-blend-overlay ${Navbar.navOpen ? 'overlay--visible' : 'invisible'}`} onClick={Navbar.handleNavClose}></div>
+      <div className={`bg-blend-overlay bg-black/40 md:hidden w-full h-full z-10 fixed inset-0 transition-all ${navOpen ? 'visible opacity-100' : 'invisible opacity-0'}`} onClick={() => setNavOpen(false)}></div>
     </>
   )
 }
