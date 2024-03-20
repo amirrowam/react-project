@@ -34,14 +34,14 @@ export default function Navbar() {
   return (
     <>
       <header
-        className="fixed top-9 right-0 left-0 w-[98%] md:w-[90%] mx-auto h-24 bg-black/50 hidden md:flex rounded-3xl items-center justify-between pr-10 px-7 py-5 text-xl backdrop-blur-[6px] ">
+        className="top-6 relative z-10 mb-6 right-0 left-0 w-[98%] md:w-[90%] mx-auto h-24 bg-black/50 hidden md:flex rounded-3xl items-center justify-between pr-10 px-7 py-5 text-xl backdrop-blur-[6px] ">
         <div className="flex gap-x-2.5 lg:gap-x-5 items-center text-orange-200">
           {token ? <span onClick={() => disPatch(logout())}>logout</span> : <><Link to={'/login-register'} className="items-center">
             <span className="hidden xl:inline-block">Login | Register</span>
             <box-icon name='log-in' flip='vertical' color='#fed7aa'></box-icon>
           </Link></>}
           <span className="w-px h-14 bg-white/20"></span>
-          <Link to={''}>
+          <Link to={'/cart'}>
             <box-icon name='shopping-bag' color='#fed7aa' ></box-icon>
           </Link>
         </div>
@@ -90,7 +90,7 @@ export default function Navbar() {
               <box-icon name='log-in' flip='vertical' color='#fed7aa'></box-icon>
               <span className="text-orange-300">Login | Register</span>
             </Link></>}
-            <Link to={''} className="text-orange-300 block">
+            <Link to={'/cart'} className="text-orange-300 block">
               <box-icon name='shopping-bag' color='#fed7aa'></box-icon>
               <span>Cart</span>
             </Link>
