@@ -34,7 +34,7 @@ export default function Navbar() {
   return (
     <>
       <header
-        className="top-6 relative z-10 mb-6 right-0 left-0 w-[98%] md:w-[90%] mx-auto h-24 bg-black/50 hidden md:flex rounded-3xl items-center justify-between pr-10 px-7 py-5 text-xl backdrop-blur-[6px] ">
+        className="top-6 fixed z-10 mb-6 right-0 left-0 w-[98%] md:w-[90%] mx-auto h-24 bg-black/50 hidden md:flex rounded-3xl items-center justify-between pr-10 px-7 py-5 text-xl backdrop-blur-[6px] ">
         <div className="flex gap-x-2.5 lg:gap-x-5 items-center text-orange-200">
           {token ? <span onClick={() => disPatch(logout())}>logout</span> : <><Link to={'/login-register'} className="items-center">
             <span className="hidden xl:inline-block">Login | Register</span>
@@ -66,7 +66,7 @@ export default function Navbar() {
           </div>
         </nav>
       </header>
-      <div className="bg-white px-4 h-16 items-center justify-between md:hidden flex">
+      <div className="bg-white fixed px-4 h-16 z-20 w-full mb-16 items-center justify-between md:hidden flex">
         {/* <i className="bx bx-menu text-2xl text-zinc-700 nav-icon-open"></i> */}
         <Link onClick={() => setNavOpen(!navOpen)} className='nav-icon-open'><box-icon name='menu' color='#3f3f46'></box-icon></Link>
         <h2>LOGO</h2>

@@ -8,6 +8,10 @@ export default {
     extend: {
       container: {
         center: true,
+        padding : {
+          DEFAULT : "1rem",
+          lg: "0.625rem"
+        }
       },
       colors: {
         'brown': {
@@ -24,6 +28,12 @@ export default {
         "4xl": "2rem"
       }
     },
+    screens:{
+      'sm' : '640px',
+      'md' : '768px',
+      'lg' : '1024px',
+      'xl' : '1280px'
+    }
   },
   plugins: [
     function ({ addVariant }) {

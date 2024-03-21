@@ -30,8 +30,7 @@ export default function Slider() {
   ));
   return (
     <Swiper
-      onAutoplayTimeLeft={onAutoplayTimeLeft}
-      className="mySwiper"
+      className="mySwiper select-none"
       autoplay={{
         delay: 2500,
         disableOnInteraction: false,
