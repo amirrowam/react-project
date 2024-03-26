@@ -9,20 +9,32 @@ export default function DiscountSection() {
       setDiscountProduct(res.data);
     })();
   }, []);
-
   const slideItems = discountProduct?.map((e, index) => (
-    <div class="bg-white/80 py-2 md:p-5 shadow-md overflow-hidden rounded-2xl" key={index}>
-      <img className="w-full h-full" src={import.meta.env.VITE_BASE_URL + e?.attributes?.images?.data[0]?.attributes?.url} alt="discount-product-img" />
-      <div className="">{e.attributes.name}</div>
-      <div className="text-sky-400"><s>${e?.attributes?.price * (1 - e?.attributes?.discount / 100)}</s> <span>${e?.attributes?.price}</span></div>
-      <Link to={`product-details/${e?.id}/${e?.attributes?.name.split(' ').join('-')}`}>more information</Link>
+    <div class="bg-white/85 shadow-md  py-4 md:px-5 md:py-4 px-5 relative rounded-2xl" key={index}>
+      <img className="w-full h-[70%] rounded-md" src={import.meta.env.VITE_BASE_URL + e?.attributes?.images?.data[0]?.attributes?.url} alt="discount-product-img" />
+      <h4 className="text-center mt-3 text-2xl">{e.attributes.name}</h4>
+      <div>MAIN PRICE : <s className="text-red-600">${e?.attributes?.price}</s></div>
+      <div>DISCOUNT PRICE : <span className="text-sky-400">${e?.attributes?.price * (1 - e?.attributes?.discount / 100)}</span></div>
+      <div className="mt-3">
+        <Link to={`product-details/${e?.id}/${e?.attributes?.name.split(' ').join('-')}`}>
+          <span className="bg-slate-200 inline-flex items-center rounded-full p-0.5 float-end"><box-icon name='shopping-bags' type='solid' color='grey' ></box-icon>
+          </span>
+        </Link>
+        <box-icon name='star' color='#fed7aa' type='solid'></box-icon>
+        <box-icon name='star' color='#fed7aa' type='solid'></box-icon>
+        <box-icon name='star' color='#fed7aa' ></box-icon>
+        <box-icon name='star' color='#fed7aa' ></box-icon>
+        <box-icon name='star' color='#fed7aa' ></box-icon>
+      </div>
     </div>
   ));
   return (
     <>
-      <div class="text-3xl mx-auto">DISCOUNT PRODUCTS</div>
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3.5 md:gap-5">
-        {slideItems}
+      <div className="container">
+        <div class="text-3xl mx-auto my-14">DISCOUNT PRODUCTS</div>
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3.5 md:gap-5">
+          {slideItems}
+        </div>
       </div>
     </>
   );
