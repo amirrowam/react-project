@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import fetchApi from "../../../Utills/fetchApi";
+import fetchApi from "../../../Utils/fetchApi";
 import { Link } from "react-router-dom";
 export default function DiscountSection() {
   const [discountProduct, setDiscountProduct] = useState();
@@ -10,7 +10,7 @@ export default function DiscountSection() {
     })();
   }, []);
   const slideItems = discountProduct?.map((e, index) => (
-    <div class="bg-white/85 shadow-md  py-4 md:px-5 md:py-4 px-5 relative rounded-2xl" key={index}>
+    <div class="bg-white/85 shadow-md  py-12 md:px-5 md:py-4 px-5 rounded-2xl" key={index}>
       <img className="w-full h-[70%] rounded-md" src={import.meta.env.VITE_BASE_URL + e?.attributes?.images?.data[0]?.attributes?.url} alt="discount-product-img" />
       <h4 className="text-center mt-3 text-2xl">{e.attributes.name}</h4>
       <div>MAIN PRICE : <s className="text-red-600">${e?.attributes?.price}</s></div>

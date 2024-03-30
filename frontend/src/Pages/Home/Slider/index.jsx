@@ -4,7 +4,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css/navigation";
 
 import "swiper/css/autoplay";
-import fetchApi from "../../../Utills/fetchApi";
+import fetchApi from "../../../Utils/fetchApi";
 import "swiper/css";
 import './style.css'
 import { data } from "autoprefixer";

@@ -7,7 +7,7 @@ import Footer from './Components/Footer'
 import { useSelector } from 'react-redux'
 import Cart from './Pages/Cart'
 import LoginRegister from './Pages/LoginRegister'
-import Categories from './Pages/Categories'
+// import Categories from './Pages/Categories'
 import ProductDetails from './Pages/ProductDetails'
 import NotFound from './Pages/NotFound'
 export default function App() {
@@ -22,7 +22,7 @@ export default function App() {
           <Route path='/Product-details/:id/:name' element={<ProductDetails />} />
           <Route path='/cart' element={token ? <Cart /> : <Navigate to={'/login-register'} />} />
           <Route path='/login-register' element={<LoginRegister />} />
-          <Route path='/categories' element={<Categories />} />
+          {/* <Route path='/categories' element={<Categories />} /> */}
           <Route path='*' element={<NotFound />} />
         </Routes>
       </div>

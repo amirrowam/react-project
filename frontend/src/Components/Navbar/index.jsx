@@ -55,10 +55,10 @@ export default function Navbar() {
               <Link className="hover:text-orange-200 transition-colors" to={'/products/all-categories'}>Products</Link>
             </li>
             <li>
-              <Link className="hover:text-orange-200 transition-colors" to={'/categories'}>Categories</Link>
+              {/* <Link className="hover:text-orange-200 transition-colors" to={'/categories'}>Categories</Link> */}
             </li>
             <li>
-              {/* <Link className="hover:text-orange-200 transition-colors" to={' '}>About Us</Link> */}
+              <Link className="hover:text-orange-200 transition-colors" to={' '}>About Us</Link>
             </li>
           </ul>
           <div className="flex shrink-0">
@@ -82,7 +82,7 @@ export default function Navbar() {
           <div className="space-y-3">
             <Link to={'/'} className="block text-zinc-700"><Box-icon name='home'></Box-icon> Home</Link>
             <Link to={'/products/all-categories'} className="block text-zinc-700"><Box-icon name='box'></Box-icon> Products</Link>
-            <Link to={'/categories'} className="block text-zinc-700"><Box-icon name='user'></Box-icon> Categories</Link>
+            {/* <Link to={'/categories'} className="block text-zinc-700"><Box-icon name='user'></Box-icon> Categories</Link> */}
           </div>
 
           <div className="border-t-2 border-t-gray-100 pt-3 pb-4 mt-6 text-base space-y-3">
