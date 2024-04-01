@@ -66,7 +66,7 @@ export default function Navbar() {
           </div>
         </nav>
       </header>
-      <div className="bg-white fixed px-4 h-16 z-20 w-full mb-16 items-center justify-between md:hidden flex">
+      <div className="bg-white/25 fixed px-4 h-16 z-20 w-full mb-16 items-center justify-between md:hidden flex">
         {/* <i className="bx bx-menu text-2xl text-zinc-700 nav-icon-open"></i> */}
         <Link onClick={() => setNavOpen(!navOpen)} className='nav-icon-open'><box-icon name='menu' color='#3f3f46'></box-icon></Link>
         <h2>LOGO</h2>

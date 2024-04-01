@@ -35,7 +35,7 @@ export default function Categories() {
   ));
   return (
     <>
-      <div className="container my-24 text-center">
+      <div className="container my-24 text-center select-none">
         <div className="flex justify-center gap-5 lg:gap-x-40">
           {items}
         </div>
