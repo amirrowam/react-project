@@ -28,6 +28,7 @@ export default function Product() {
   const [rangeValue, setRangeValue] = useState(1000);
   const { categoryName } = useParams();
   const [products, setProducts] = useState([]);
+  const [sort, setSort] = useState('createdAt:asc');
   const handleChangeSort = (event) => {
     setSort(event.target.value);
   };
@@ -37,12 +38,12 @@ export default function Product() {
         `products?populate=*${categoryName !== "all-categories"
           ? `&filters[categories][name][$eqi]=${categoryName}`
           : ""
-        }&filters[price][$lte]=${rangeValue}`
+        }&filters[price][$lte]=${rangeValue}&sort=${sort}`
       );
       console.log(res)
       setProducts(res.data);
     })();
-  }, [rangeValue])
+  }, [rangeValue, categoryName, sort])
 
   const items = products?.map((e, index) => {
     return (
@@ -63,10 +64,19 @@ export default function Product() {
   return (
     <>
       <div className='mx-4 mt-36 flex'>
-        <div className='w-[20%]'>
+        <div className='w-[20%] border rounded-md p-3 min-h-5 select-none'>
           <label htmlFor="medium-range" className="block mb-2 text-gray-900 text-xl">Filter by Price</label>
           <p>Price : $0 - ${rangeValue}</p>
-          <input id="medium-range" min={0} step={10} max={1000} type="range" value={rangeValue} onChange={(e) => setRangeValue(e.target.value)} className="w-full h-2 mb-6 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700" />
+          <input id="medium-range" min={0} step={10} max={1000} type="range" value={rangeValue} onChange={(e) => setRangeValue(e.target.value)} className="w-full h-2 mb-6 bg-gray-200 rounded-lg appearance-none cursor-pointe" />
+
+          <label htmlFor='sortSection' className='block mb-2 text-gray-900 text-xl'>Filter by</label>
+          <select id='sortSection' onChange={handleChangeSort} className='block w-full p-2 mb-6 text-[1.1rem] text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500' value={sort}>
+            <option value={'createdAt:desc'}>Newest</option>
+            <option value={'createdAt:asc'}>Oldest</option>
+            <option value={'discount:desc'}>Offers</option>
+            <option value={'price:desc'}>Highest price</option>
+            <option value={'price:asc'}>Lowest price</option>
+          </select>
         </div>
         <div className='w-[80%]'>
           <div className="container">
