@@ -30,7 +30,7 @@ export default function Slider() {
   ));
   return (
     <Swiper
-      className="mySwiper select-none"
+      className="mySwiper select-none mt-16 lg:mt-[120px]"
       autoplay={{
         delay: 2500,
         disableOnInteraction: false,
