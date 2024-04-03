@@ -4,10 +4,10 @@ import fetchApi from '../../Utils/fetchApi';
 
 export function ProductCard({ img, name, price, desc, id, }) {
   return (
-    <div class="bg-white/85 shadow-md  py-12 md:px-5 md:py-4 px-5 rounded-2xl">
+    <div class="bg-white/85 shadow-md text-zinc-700 py-12 md:px-5 md:py-4 px-5 rounded-2xl">
       <img className="w-full h-30% lg:h-[50%] rounded-md" src={img} alt="products-img" />
-      <h4 className="text-center mt-3 text-2xl">{name}</h4>
-      <div className="text-sky-400">PRICE : ${price}</div>
+      <h4 className="text-center mt-3 font-semibold text-2xl">{name}</h4>
+      <div className='mt-3'>PRICE : <span className='text-sky-400'>${price}</span></div>
       {desc.split(" ").slice(0, 10).join(" ")}...
       <div className="mt-3">
         <Link to={`/product-details/${id}/${name.split(" ").join("-")}`}>
