@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import fetchApi from '../../Utils/fetchApi'
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-
+import { addItems, removeItems } from "../../Store/Slices/CartSlice";
 export default function ProductDetails() {
   const [product, setProduct] = useState();
   const dispatch = useDispatch()
@@ -14,7 +14,7 @@ export default function ProductDetails() {
       setProduct(res.data);
     })();
   }, [id]);
-  console.log(product)
+  const quantity = useSelector(state=>state.cart?.list)?.filter(e=>e.id==id)[0]?.quantity
   return (
     <>
       <div className="container lg:flex mt-16 lg:mt-36">
@@ -72,9 +72,9 @@ export default function ProductDetails() {
           <div className="bg-gray-200 my-4 w-full h-[2px] rounded-full"></div>
           <div className="font-bold text-zinc-700 text-lg">Quantity</div>
           <div className="w-52 h-16 border-2 border-gray-100 mt-2 mx-auto lg:mx-0 bg-gray-50 rounded-4xl items-center flex justify-between px-5">
-            <span className="text-zinc-700 cursor-pointer text-4xl"><box-icon name='minus' color='#3f3f46' ></box-icon></span>
-            <span className="text-xl text-orange-400">1</span>
-            <span className="text-3xl text-orange-400 cursor-pointer">+</span>
+            <button onClick={() => dispatch(removeItems(id))} className="text-zinc-700 cursor-pointer text-4xl"><box-icon name='minus' color='#3f3f46' ></box-icon></button>
+            {quantity && <span className="text-xl text-orange-400">{quantity}</span>}
+            <button onClick={() => dispatch(addItems(product))} className="text-3xl text-orange-400 cursor-pointer">+</button>
           </div>
         </div>
       </div>
