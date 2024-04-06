@@ -7,6 +7,7 @@ import { logout } from '../../Store/Slices/Auth'
 export default function Navbar() {
   const [navOpen, setNavOpen] = useState(false)
   const disPatch = useDispatch()
+  const productQuantity = useSelector(state=>state.cart.list).length
   const { token } = useSelector(state => state.auth)
 
   useEffect(() => {
@@ -41,8 +42,9 @@ export default function Navbar() {
             <box-icon name='log-in' flip='vertical' color='#fed7aa'></box-icon>
           </Link></>}
           <span className="w-px h-14 bg-white/20"></span>
-          <Link to={'/cart'}>
-            <box-icon name='shopping-bag' color='#fed7aa' ></box-icon>
+          <Link to={'/cart'} className='relative'>
+            <box-icon name='shopping-bag' color='#fed7aa'></box-icon>
+            <div className='w-4 h-4 rounded-full bg-slate-50 absolute top-4 right-0 left-3 text-[0.9rem] justify-center text-orange-300 items-center flex'>{productQuantity}</div>
           </Link>
         </div>
         <input type="text" className="rounded-lg h-9 w-72 bg-slate-100 text-sm pl-6" placeholder="searching ..." />
@@ -53,9 +55,6 @@ export default function Navbar() {
             </li>
             <li>
               <Link className="hover:text-orange-200 transition-colors" to={'/products/all-categories'}>Products</Link>
-            </li>
-            <li>
-              {/* <Link className="hover:text-orange-200 transition-colors" to={'/categories'}>Categories</Link> */}
             </li>
             <li>
               <Link className="hover:text-orange-200 transition-colors" to={' '}>About Us</Link>
