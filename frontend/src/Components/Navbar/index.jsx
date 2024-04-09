@@ -44,9 +44,11 @@ export default function Navbar() {
               </span>
             ) : (
               <>
-                <Link to={"/login-register"}>
-                  <span className="hidden xl:inline-block">Login | Register</span>
-                </Link>
+                <span className="hidden xl:inline-block">
+                  <Link to={"/login-register"}>
+                    Login | Register
+                  </Link>
+                </span>
               </>
             )}
             <box-icon name='log-in' flip='vertical' color='#fed7aa'></box-icon>
