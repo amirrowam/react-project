@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.1",
+    "axios": "^1.6.8",
     "boxicons": "^2.1.4",
     "dot": "^1.1.3",
     "env": "^0.0.2",

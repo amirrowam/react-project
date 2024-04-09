@@ -20,7 +20,8 @@ export default function App() {
           <Route path='/' element={<Home />} />
           <Route path='/Products/:categoryName' element={<Products />} />
           <Route path='/Product-details/:id/:name' element={<ProductDetails />} />
-          <Route path='/cart' element={token ? <Cart /> : <Navigate to={'/login-register'} />} />
+          {/* <Route path='/cart' element={token ? <Cart /> : <Navigate to={'/login-register'} />} /> */}
+          <Route path='/cart' element={<Cart />} />
           <Route path='/login-register' element={!token ? <LoginRegister /> : <Navigate to={'/'} />} />
           <Route path='*' element={<NotFound />} />
         </Routes>

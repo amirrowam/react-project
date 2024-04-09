@@ -3,35 +3,23 @@ import { Link } from 'react-router-dom'
 import useFormFields from '../../../Utils/useFormFields'
 import login from '../../../Store/Slices/Auth'
 import { useDispatch } from 'react-redux';
+import axios from 'axios';
 
 export default function Login({ handlePage }) {
     const [fields, handleChange] = useFormFields()
-    const dispatch=useDispatch()
+    const dispatch = useDispatch()
     const handleSubmit = (e) => {
-  e.preventDefault();
-  fetch('http://localhost:1337/api/auth/local/register', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      username: fields.username,
-      email: fields.email,
-      password: fields.password
-    })
-  })
- .then(res => res.json())
- .then(data => {
-    console.log(data);
-    dispatch(login({
-      user: data.user,
-      token: data.jwt
-    }));
-  })
- .catch(error => {
-    console.log(error)
-  });
-};
+        e.preventDefault()
+        axios.post('http://localhost:1337/api/auth/local', fields)
+            .then(response => {
+                console.log(response)
+                dispatch(login({
+                    user: response.data.user,
+                    token: response.data.jwt
+                }))
+            })
+            .catch(err => console.log(err))
+    };
     return (
         <>
             <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
@@ -40,11 +28,11 @@ export default function Login({ handlePage }) {
                     <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Sign in to your account</h2>
                 </div>
                 <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-                    <form onSubmit={handleSubmit} className="space-y-6" action="#"  method="POST">
+                    <form onSubmit={handleSubmit} className="space-y-6" action="#" method="POST">
                         <div>
                             <label htmlFor="Username or Email" className="block text-sm font-medium leading-6 text-gray-900">User Name</label>
                             <div className="mt-2">
-                                <input onChange={handleChange} id="Username or Email" name="Username or Email" type="text" className="pl-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+                                <input onChange={handleChange} id="identifier" name="identifier" type="text" className="pl-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
                             </div>
                         </div>
 

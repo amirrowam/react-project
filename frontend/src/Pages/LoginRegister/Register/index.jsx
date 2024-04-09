@@ -2,28 +2,22 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import useFormFields from '../../../Utils/useFormFields'
 import fetchApi from '../../../Utils/fetchApi'
+import axios from 'axios'
 
 export default function Register({ handlePage }) {
   const [fields, handleChange] = useFormFields()
   const handleSubmit = (e) => {
-    e.preventDefault();
-    fetch('http://localhost:1337/api/auth/local/register', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(fields)
-    })
-   .then(res => res.json())
-   .then(data => {
-      console.log(fields)
-      // alert('login successfully');
-      handlePage();
-    })
-   .catch(error => {
-      alert(error.message);
-    });
+    e.preventDefault()
+      axios.post('http://localhost:1337/api/auth/local/register',fields)
+      .then(response=>{
+        alert('login successfully')
+        handleChangePageType()
+      })
+      .catch(err=>{
+        alert(err.response.data.error.message)
+      })
   };
+
   return (
     <>
       <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
