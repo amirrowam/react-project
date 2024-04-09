@@ -38,13 +38,23 @@ export default function Navbar() {
         className="top-6 fixed z-10 right-0 left-0 w-[98%] md:w-[90%] mx-auto h-24 bg-black/50 hidden md:flex rounded-3xl items-center justify-between pr-10 px-7 py-5 text-xl backdrop-blur-[6px] ">
         <div className="flex gap-x-2.5 lg:gap-x-5 items-center text-orange-200">
           {token ? <span onClick={() => disPatch(logout())}>logout</span> : <><Link to={'/login-register'} className="items-center">
-            <span className="hidden xl:inline-block">Login | Register</span>
+            {token ? (
+              <span onClick={() => dispatch(logout())}>
+                Logout
+              </span>
+            ) : (
+              <>
+                <Link to={"/login-register"}>
+                  <span className="hidden xl:inline-block">Login | Register</span>
+                </Link>
+              </>
+            )}
             <box-icon name='log-in' flip='vertical' color='#fed7aa'></box-icon>
           </Link></>}
           <span className="w-px h-14 bg-white/20"></span>
           <Link to={'/cart'} className='relative'>
             <box-icon name='shopping-bag' color='#fed7aa'></box-icon>
-            {productQuantity>0 && <div className='w-4 h-4 rounded-full bg-slate-50 absolute top-4 right-0 left-3 text-[0.9rem] justify-center text-orange-300 items-center flex'>{productQuantity}</div>}
+            {productQuantity > 0 && <div className='w-4 h-4 rounded-full bg-slate-50 absolute top-4 right-0 left-3 text-[0.9rem] justify-center text-orange-300 items-center flex'>{productQuantity}</div>}
           </Link>
         </div>
         <input type="text" className="rounded-lg h-9 w-72 bg-slate-100 text-sm pl-6" placeholder="searching ..." />
