@@ -137,7 +137,10 @@ export default function Navbar() {
       <div className="bg-white fixed px-4 h-16 z-20 w-full mb-16 items-center top-0 justify-between md:hidden flex">
         <Link onClick={() => setNavOpen(!navOpen)} className='nav-icon-open'><box-icon name='menu' color='#3f3f46'></box-icon></Link>
         <h2>LOGO</h2>
-        <box-icon name='shopping-bag' color='#3f3f46' ></box-icon>
+        <Link to={'/cart'} className='relative'>
+          <box-icon name='shopping-bag' color='#3f3f46'></box-icon>
+          {productQuantity > 0 && <div className='w-4 h-4 rounded-full bg-slate-50 absolute top-4 right-0 left-3 text-[0.9rem] justify-center text-orange-300 items-center flex'>{productQuantity}</div>}
+        </Link>
         <div className="nav fixed top-0 bottom-0 -left-64 w-64 min-h-screen bg-white z-20 md:hidden px-4 transition-all">
           <div className="border-b-2 border-b-gray-100 flex pt-3 pb-4 mb-6">
             <Link onClick={() => setNavOpen(false)} className='nav-icon-close'><box-icon name='x' color='#3f3f46' ></box-icon></Link>
