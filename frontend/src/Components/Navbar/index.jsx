@@ -10,8 +10,8 @@ export const CardInpResult = ({ img, name, id }) => {
   return (
     <Link className='h-full w-full' to={`/product-details/${id}/${name.split(" ").join("-")}`}>
       <div className='flex border-b py-2 items-center border-zinc-700'>
-        <img src={img} alt={name} className='w-14 h-14' />
-        <h3>{name}</h3>
+        <img src={img} alt={name} className='w-14 h-14 rounded-full ml-1' />
+        <h3 className='ml-5'>{name}</h3>
       </div>
     </Link>
   );
@@ -113,7 +113,6 @@ export default function Navbar() {
             setLoading(true)
           }} type="text" className="rounded-lg h-9 w-72 bg-slate-100 text-sm pl-6" placeholder="searching ..." />
           <div className='searchInpBg flex-col items-center absolute transition-all top-full flex w-full bg-white rounded-lg'>
-            {/* {loading ? <p>Searching ...</p> : inpResult?.length > 0 ? <>{searchItems}</> : <p>not found</p>} */}
             {searchItems}
           </div>
         </div>
