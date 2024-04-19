@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import fetchApi from '../../Utils/fetchApi'
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { addItems, removeItems } from "../../Store/Slices/CartSlice";zzz
+import { addItems, removeItems } from "../../Store/Slices/CartSlice";
 export default function ProductDetails() {
   const [product, setProduct] = useState();
   const dispatch = useDispatch()
